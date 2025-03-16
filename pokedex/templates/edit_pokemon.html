@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Edit Pokémon
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-3">{{ title }}</h1>
+    <hr>
+    <div class="card">
+      <div class="card-header text-bg-primary">
+        <h3>Edit detail</h3>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label for="name" class="form-label">Game Name</label>
+            <input name="name" type="text" class="form-control" id="name" value="{{ pokemon.name }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="weight" class="form-label">Game Type</label>
+            <input name="weight" type="text" class="form-control" id="weight" value="{{ pokemon.weight }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Game Description</label>
+            <textarea name="description" class="form-control" id="description" rows="3" required>{{ pokemon.description }}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="img_url" class="form-label">Game Image URL</label>
+            <input name="img_url" type="text" class="form-control" id="img_url" value="{{ pokemon.img_url }}" required>
+          </div>
+          <div class="mb-3">
+            
+              {% for type in types %}
+                <option value="{{ type.id }}" {% if type in pokemon.types %} selected {% endif %}>{{ type.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-outline-primary">
+            <i class="bi bi-pencil-fill"></i>
+            Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
